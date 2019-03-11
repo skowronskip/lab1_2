@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
+import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class Invoice {
@@ -35,7 +35,7 @@ public class Invoice {
     Invoice(Id invoiceId, ClientData client) {
         this.id = invoiceId;
         this.client = client;
-        this.items = new ArrayList<InvoiceLine>();
+        this.items = new ArrayList<>();
 
         this.net = Money.ZERO;
         this.gros = Money.ZERO;
@@ -49,7 +49,7 @@ public class Invoice {
     }
 
     /**
-     * 
+     *
      * @return immutable projection
      */
     public List<InvoiceLine> getItems() {
