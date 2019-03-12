@@ -29,7 +29,8 @@ public class BookKeeper {
             BigDecimal ratio = null;
             String desc = null;
 
-            switch (item.getProductData().getType()) {
+            switch (item.getProductData()
+                        .getType()) {
                 case DRUG:
                     ratio = BigDecimal.valueOf(0.05);
                     desc = "5% (D)";
@@ -44,7 +45,9 @@ public class BookKeeper {
                     break;
 
                 default:
-                    throw new IllegalArgumentException(item.getProductData().getType() + " not handled");
+                    throw new IllegalArgumentException(item.getProductData()
+                                                           .getType()
+                                                       + " not handled");
             }
 
             Money taxValue = net.multiplyBy(ratio);
