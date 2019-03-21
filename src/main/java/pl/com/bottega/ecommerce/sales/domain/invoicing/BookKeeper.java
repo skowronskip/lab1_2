@@ -26,8 +26,6 @@ public class BookKeeper {
 
         for (RequestItem item : request.getItems()) {
             Money net = item.getTotalCost();
-            BigDecimal ratio = null;
-            String desc = null;
 
             Tax tax = taxCalculation.calculate(item, net);
 
