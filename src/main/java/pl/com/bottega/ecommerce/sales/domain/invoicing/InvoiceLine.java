@@ -38,7 +38,10 @@ public class InvoiceLine {
 
         this.gros = net.add(tax.getAmount());
     }
-
+    
+    public static InvoiceLine createInvoiceLine(RequestItem item, Money net, Tax tax) {
+    	return new InvoiceLine(item.getProductData(), item.getQuantity(), net , tax);
+    }
     public ProductData getProduct() {
         return product;
     }
