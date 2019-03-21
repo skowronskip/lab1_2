@@ -53,7 +53,6 @@ public class Invoice {
     }
 
     /**
-     *
      * @return immutable projection
      */
     public List<InvoiceLine> getItems() {
