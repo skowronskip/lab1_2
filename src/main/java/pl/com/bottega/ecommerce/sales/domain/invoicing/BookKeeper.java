@@ -11,11 +11,6 @@
  * specific language governing permissions and limitations under the License.
  */
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
-
-import java.math.BigDecimal;
-import java.util.List;
-
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
@@ -27,7 +22,7 @@ public class BookKeeper {
         for (RequestItem item : invoiceRequest.getItems()) {
         	Tax tax = taxCalculator.calculateTax(item);
         	Money net = item.getTotalCost();
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
+            InvoiceLine invoiceLine = InvoiceLine.createInvoiceLine(item, net, tax);
             invoice.addItem(invoiceLine);
         }
 
