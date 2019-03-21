@@ -11,6 +11,7 @@ public class InvoiceRequest {
 
     private ClientData client;
     private List<RequestItem> items = new ArrayList<>();
+    private TaxCalculator taxCalculator = new DefaultTaxCalculator();
 
     public InvoiceRequest(ClientData client) {
         this.client = client;
@@ -22,6 +23,10 @@ public class InvoiceRequest {
 
     public ClientData getClient() {
         return client;
+    }
+
+    public TaxCalculator getTaxCalculator() {
+        return taxCalculator;
     }
 
     public Collection<RequestItem> getItems() {
