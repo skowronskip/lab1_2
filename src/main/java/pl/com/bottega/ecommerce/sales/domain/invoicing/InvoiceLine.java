@@ -30,13 +30,17 @@ public class InvoiceLine {
 
     private Tax tax;
 
-    InvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
+    private InvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
         this.product = product;
         this.quantity = quantity;
         this.net = net;
         this.tax = tax;
 
         this.gros = net.add(tax.getAmount());
+    }
+
+    static InvoiceLine createInvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
+        return new InvoiceLine(product, quantity, net, tax);
     }
 
     public ProductData getProduct() {
