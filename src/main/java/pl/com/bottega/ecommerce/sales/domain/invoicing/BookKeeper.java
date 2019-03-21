@@ -24,7 +24,7 @@ public class BookKeeper {
     public Invoice issuance(InvoiceRequest invoiceRequest) {
 
         InvoiceFactory invoiceFactory = new InvoiceFactory();
-        Invoice invoice = invoiceFactory.createInvoiceInstance(invoiceRequest.getClient(), "invoice");
+        Invoice invoice = invoiceFactory.createInvoiceInstance(invoiceRequest.getClient());
 
         for (RequestItem item : invoiceRequest.getItems()) {
 
