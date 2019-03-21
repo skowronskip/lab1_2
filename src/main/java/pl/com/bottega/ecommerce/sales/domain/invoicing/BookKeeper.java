@@ -13,51 +13,30 @@
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
+import pl.com.bottega.ecommerce.sales.domain.taxcalculator.ITaxCalculator;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class BookKeeper {
 
-    public Invoice issuance(ClientData client, List<RequestItem> items) {
-        Invoice invoice = new Invoice(Id.generate(), client);
+    private IInvoiceFactory invoiceFactory;
 
-        for (RequestItem item : items) {
-            Money net = item.getTotalCost();
-            BigDecimal ratio = null;
-            String desc = null;
+    public BookKeeper(IInvoiceFactory invoiceFactory){
+        this.invoiceFactory = invoiceFactory;
+    }
 
-            switch (item.getProductData()
-                        .getType()) {
-                case FOOD:
-                    ratio = BigDecimal.valueOf(0.07);
-                    desc = "7% (F)";
-                    break;
-                case STANDARD:
-                    ratio = BigDecimal.valueOf(0.23);
-                    desc = "23%";
-                    break;
-                case DRUG:
-                    ratio = BigDecimal.valueOf(0.05);
-                    desc = "5% (D)";
-                    break;
-                default:
-                    throw new IllegalArgumentException(item.getProductData()
-                                                           .getType()
-                                                       + " not handled");
-            }
-
-            Money taxValue = net.multiplyBy(ratio);
-
-            Tax tax = new Tax(taxValue, desc);
-
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
-            invoice.addItem(invoiceLine);
+    public Invoice issuance(InvoiceData invoiceData, ITaxCalculator taxCalculator) {
+        List<InvoiceLine> lines = new ArrayList<InvoiceLine>();
+        for (RequestItem item : invoiceData.getItems()) {
+            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), item.getTotalCost(), taxCalculator.calculate(item));
+            lines.add(invoiceLine);
         }
+        return invoiceFactory.makeInvoice(invoiceData.getClient(), lines);
 
-        return invoice;
     }
 
 }
