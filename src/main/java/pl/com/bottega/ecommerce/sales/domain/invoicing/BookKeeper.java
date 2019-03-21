@@ -14,12 +14,17 @@ package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
 
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
-import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class BookKeeper {
 
+    private InvoiceFactory invoiceFactory;
+
+    public BookKeeper(InvoiceFactory invoiceFactory) {
+        this.invoiceFactory = invoiceFactory;
+    }
+
     public Invoice issuance(InvoiceRequest invoiceRequest, TaxCalculator calculator) {
-        Invoice invoice = new Invoice(Id.generate(), invoiceRequest.getClient());
+        Invoice invoice = invoiceFactory.getInvoice("default", Id.generate(), invoiceRequest.getClient());
 
         for (RequestItem requestItem : invoiceRequest.getItems()) {
             Tax tax = calculator.calculateValueOfTax(requestItem);
