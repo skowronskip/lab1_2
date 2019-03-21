@@ -27,14 +27,7 @@ public class BookKeeper {
         for (RequestItem item : dataInvoice.getItems()) {
             Money net = item.getTotalCost();
 
-            TaxInfo taxInfo = taxCalculator.calculate(item.getProductData().getType());
-
-            BigDecimal ratio = taxInfo.getRatio();
-            String desc = taxInfo.getDesc();
-
-            Money taxValue = net.multiplyBy(ratio);
-
-            Tax tax = new Tax(taxValue, desc);
+            Tax tax = taxCalculator.calculate(item.getProductData().getType(), net);
 
             InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
             invoice.addItem(invoiceLine);
