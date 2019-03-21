@@ -5,6 +5,6 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 
 public interface InvoiceFactory {
 
-    public Invoice create(Id invoiceId, ClientData client);
+    Invoice create(Id invoiceId, ClientData client);
 
 }
