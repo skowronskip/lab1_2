@@ -5,10 +5,7 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 
 public class InvoiceFactory {
 
-    public Invoice createInvoice(String type, Id invoiceId, ClientData client) {
-        if(type.equals("Invoice"))
+    public Invoice createInvoice(Id invoiceId, ClientData client) {
             return new Invoice(invoiceId, client);
-        else
-            throw new NullPointerException();
     }
 }

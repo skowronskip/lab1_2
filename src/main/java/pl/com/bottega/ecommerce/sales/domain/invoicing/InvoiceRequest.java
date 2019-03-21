@@ -26,7 +26,9 @@ public class InvoiceRequest {
         return client;
     }
 
-    public ITaxCalculator getTaxCalculator() { return  taxCalculator; }
+    public ITaxCalculator getTaxCalculator() {
+        return taxCalculator;
+    }
 
     public Collection<RequestItem> getItems() {
         return Collections.unmodifiableCollection(items);

@@ -24,7 +24,7 @@ public class BookKeeper {
     private InvoiceFactory invoiceFactory = new InvoiceFactory();
 
     public Invoice issuance(InvoiceRequest invoiceRequest) {
-        Invoice invoice = invoiceFactory.createInvoice("Invoice", Id.generate(), invoiceRequest.getClient());
+        Invoice invoice = invoiceFactory.createInvoice(Id.generate(), invoiceRequest.getClient());
 
         for (RequestItem item : invoiceRequest.getItems()) {
             Tax tax = invoiceRequest.getTaxCalculator().calculate(item);
