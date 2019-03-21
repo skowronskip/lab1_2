@@ -20,10 +20,14 @@ public class Tax {
 
     private String description;
 
-    public Tax(Money amount, String description) {
+    private Tax(Money amount, String description) {
         super();
         this.amount = amount;
         this.description = description;
+    }
+
+    public static Tax createTax(Money amount, String description) {
+        return new Tax(amount, description);
     }
 
     public Money getAmount() {
