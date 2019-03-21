@@ -11,9 +11,11 @@ public class InvoiceRequest {
 
     private ClientData client;
     private List<RequestItem> items = new ArrayList<>();
+    private ITaxCalculator taxCalculator;
 
-    public InvoiceRequest(ClientData client) {
+    public InvoiceRequest(ClientData client, ITaxCalculator taxCalculator) {
         this.client = client;
+        this.taxCalculator = taxCalculator;
     }
 
     public void add(RequestItem item) {
@@ -23,6 +25,8 @@ public class InvoiceRequest {
     public ClientData getClient() {
         return client;
     }
+
+    public ITaxCalculator getTaxCalculator() { return  taxCalculator; }
 
     public Collection<RequestItem> getItems() {
         return Collections.unmodifiableCollection(items);
