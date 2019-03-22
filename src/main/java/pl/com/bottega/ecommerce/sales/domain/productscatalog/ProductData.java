@@ -29,7 +29,8 @@ public class ProductData {
     private ProductType type;
 
     @SuppressWarnings("unused")
-    private ProductData() {}
+    private ProductData() {
+    }
 
     ProductData(Id productId, Money price, String name, ProductType type, Date snapshotDate) {
         this.productId = productId;

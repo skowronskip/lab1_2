@@ -33,7 +33,7 @@ public class BookKeeper {
         for (RequestItem item : invoiceRequest.getItems()) {
             Tax tax = taxCalculator.calculate(item);
 
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
+            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), item.getTotalCost(), tax);
             invoice.addItem(invoiceLine);
         }
 
