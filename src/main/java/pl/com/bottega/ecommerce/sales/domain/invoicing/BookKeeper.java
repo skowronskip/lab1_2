@@ -27,7 +27,7 @@ public class BookKeeper {
         this.invoiceFactory = invoiceFactory;
     }
 
-    public Invoice issuance(ClientData client, List<RequestItem> items) {
+    public Invoice issuance(InvoiceRequest invoiceRequest) {
         Invoice invoice = this.invoiceFactory.create(Id.generate(), client);
 
         for (RequestItem item : items) {
