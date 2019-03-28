@@ -31,6 +31,13 @@ public class MoneyTest {
         Assertions.assertEquals(resoult, money);
     }
 
+    @Test
+    public void substractTestWrongValue() {
+        Money money = new Money(100, Currency.getInstance("EUR"));
+        Money part = new Money(200, Currency.getInstance("USD"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> money.subtract(part));
+    }
+
 
 
 }
