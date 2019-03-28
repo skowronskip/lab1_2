@@ -11,7 +11,6 @@ public class TaxCalculatorImplementationTest {
 
         @Test
         public void taxCalculatorForFoodShouldReturnSevenPercent() {
-
             TaxCalculator taxCalculator = new TaxCalculatorImplementation();
             Money money = new Money(100);
             Money moneyShouldBeReturned = new Money(7);
@@ -19,4 +18,15 @@ public class TaxCalculatorImplementationTest {
 
             assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
         }
+
+        @Test
+        public void taxCalculatorForStandardShouldReturnTwentyThreePercent() {
+            TaxCalculator taxCalculator = new TaxCalculatorImplementation();
+            Money money = new Money(100);
+            Money moneyShouldBeReturned = new Money(23);
+            Tax tax = taxCalculator.calculate(ProductType.STANDARD, money);
+
+            assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
+        }
+
     }
