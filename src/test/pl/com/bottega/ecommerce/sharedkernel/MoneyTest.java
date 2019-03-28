@@ -1,13 +1,24 @@
 package pl.com.bottega.ecommerce.sharedkernel;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class MoneyTest {
+    private Money money;
+
+    @Before
+    public void init() {
+        money = new Money(50);
+    }
 
     @Test
-    public void multiplyBy() {
+    public void shouldMultiplyBy() {
+        assertEquals(new Money(25), money.multiplyBy(0.5));
+        assertEquals(new Money(10), money.multiplyBy(0.2));
+        assertEquals(new Money(100), money.multiplyBy(2));
+        assertEquals(new Money(5), money.multiplyBy(0.1));
     }
 
     @Test
