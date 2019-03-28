@@ -29,9 +29,9 @@ public class ProductData {
     private ProductType type;
 
     @SuppressWarnings("unused")
-    private ProductData() {}
+    private ProductData(Id generate, Money productPrice, ProductType drug, Date date) {}
 
-    ProductData(Id productId, Money price, String name, ProductType type, Date snapshotDate) {
+    public ProductData(Id productId, Money price, String name, ProductType type, Date snapshotDate) {
         this.productId = productId;
         this.price = price;
         this.name = name;
