@@ -53,5 +53,10 @@ public class MoneyTest {
 
     @Test
     public void lessOrEquals() {
+        assertFalse(money.lessOrEquals(new Money(25)));
+        assertFalse(money.lessOrEquals(new Money(49)));
+        assertTrue(money.lessOrEquals(new Money(50)));
+        assertTrue(money.lessOrEquals(new Money(51)));
+        assertTrue(money.lessOrEquals(new Money(100)));
     }
 }
