@@ -5,6 +5,7 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 import java.util.Currency;
 
 public class MoneyTest {
+
     @Test
     public void addTestRightValue(){
         Money money=new Money(100, Currency.getInstance("EUR"));
@@ -12,6 +13,13 @@ public class MoneyTest {
         Money resoult=new Money(200,Currency.getInstance("EUR"));
         money=money.add(part);
         Assertions.assertEquals(resoult,money);
+    }
+
+    @Test
+    public void addTestWrongValue(){
+        Money money=new Money(100, Currency.getInstance("EUR"));
+        Money part=new Money(200,Currency.getInstance("USD"));
+        Assertions.assertThrows(IllegalArgumentException.class, ()->money.add(part));
     }
 
 }
