@@ -40,6 +40,13 @@ public class MoneyTest {
     }
 
     @Test public void subtract() {
+        Money money = new Money(new BigDecimal(40.0), Currency.getInstance("EUR"));
+        Money moneyToSubtract = new Money(new BigDecimal(10.0), Currency.getInstance("EUR"));
+        Money moneyExpected = new Money(new BigDecimal(30.0), Currency.getInstance("EUR"));
+
+        money = money.subtract(moneyToSubtract);
+
+        Assert.assertThat(money, Matchers.equalTo(moneyExpected));
     }
 
     @Test public void greaterThan() {
