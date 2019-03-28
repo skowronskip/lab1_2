@@ -34,4 +34,14 @@ public class MoneyTest {
         money = money.add(moneySecond);
         Assert.assertThat(money, is(moneyExpected));
     }
+
+    @Test
+    public void testMoneySubtract() {
+        Money money = new Money(new BigDecimal(90.0));
+        Money moneySecond = new Money(new BigDecimal(10.0));
+        Money moneyExpected = new Money(new BigDecimal(80.0));
+
+        money = money.subtract(moneySecond);
+        Assert.assertThat(money, is(moneyExpected));
+    }
 }
