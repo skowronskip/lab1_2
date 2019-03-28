@@ -5,8 +5,6 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
-import java.math.BigDecimal;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -20,12 +18,11 @@ public class InvoiceTest {
         assertThat(invoice.getGros(), is(new Money(0)));
     }
 
-
     @Test
     public void shouldIncreaseNetAndGrosWhenAddingAnItem() {
         Invoice invoice = new Invoice(new Id("Invoice0"), new ClientData(new Id("Client0"), "John Smith"));
 
-        Money net = new Money(new BigDecimal(10));
+        Money net = new Money(10);
         Tax tax = new Tax(new Money(5), "");
         InvoiceLine invoiceLine = new InvoiceLine(null, 1, net, tax);
 
@@ -35,16 +32,15 @@ public class InvoiceTest {
         assertThat(invoice.getGros(), is(invoiceLine.getGros()));
     }
 
-
     @Test
     public void shouldIncreaseNetAndGrosWhenAddingMultipleItems() {
         Invoice invoice = new Invoice(new Id("Invoice0"), new ClientData(new Id("Client0"), "John Smith"));
 
-        Money net = new Money(new BigDecimal(10));
+        Money net = new Money(10);
         Tax tax = new Tax(new Money(5), "");
         InvoiceLine invoiceLine = new InvoiceLine(null, 1, net, tax);
 
-        Money net2= new Money(new BigDecimal(20));
+        Money net2 = new Money(20);
         Tax tax2 = new Tax(new Money(2), "");
         InvoiceLine invoiceLine2 = new InvoiceLine(null, 1, net2, tax2);
 
