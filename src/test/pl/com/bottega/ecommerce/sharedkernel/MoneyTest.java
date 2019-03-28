@@ -54,6 +54,13 @@ public class MoneyTest {
         assertThat(result, is(expected));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotSubtractDifferentCurrencies() {
+        Money money = new Money(2, Currency.getInstance("USD"));
+
+        money.subtract(new Money(1, Currency.getInstance("EUR")));
+    }
+
     @Test
     public void shouldSubtractWhenCurrenciesAreDifferentButOneIsZero() {
         Money money = new Money(2, Currency.getInstance("USD"));
