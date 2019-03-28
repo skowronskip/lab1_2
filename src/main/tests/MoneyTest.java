@@ -33,6 +33,14 @@ public class MoneyTest {
     @Test
     public void successfulSubstracTest(){
 
+        Money money1 = new Money(20, Currency.getInstance("EUR"));
+        Money money2 = new Money(10, Currency.getInstance("EUR"));
+
+        Money afterAddMoney = money1.subtract(money2);
+        final Money EXPECTED_VALUE = new Money(10,Currency.getInstance("EUR"));
+
+        Assertions.assertEquals(EXPECTED_VALUE,afterAddMoney);
+
     }
 
     @Test
