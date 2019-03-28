@@ -60,4 +60,12 @@ public class MoneyTest {
 
         Assert.assertThat(money.lessThan(moneySecond), is(false));
     }
+
+    @Test
+    public void testMoneyLessOrEquals() {
+        Money money = new Money(new BigDecimal(20.0));
+        Money moneySecond = new Money(new BigDecimal(20.0));
+
+        Assert.assertThat(money.lessOrEquals(moneySecond), is(true));
+    }
 }
