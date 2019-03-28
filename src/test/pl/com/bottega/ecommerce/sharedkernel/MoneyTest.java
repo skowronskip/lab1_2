@@ -37,12 +37,18 @@ public class MoneyTest {
     public void shouldBeGreaterThan() {
         assertTrue(money.greaterThan(new Money(25)));
         assertTrue(money.greaterThan(new Money(49)));
+        assertFalse(money.greaterThan(new Money(50)));
         assertFalse(money.greaterThan(new Money(51)));
         assertFalse(money.greaterThan(new Money(100)));
     }
 
     @Test
-    public void lessThan() {
+    public void shouldBeLessThan() {
+        assertFalse(money.lessThan(new Money(25)));
+        assertFalse(money.lessThan(new Money(49)));
+        assertFalse(money.lessThan(new Money(50)));
+        assertTrue(money.lessThan(new Money(51)));
+        assertTrue(money.lessThan(new Money(100)));
     }
 
     @Test
