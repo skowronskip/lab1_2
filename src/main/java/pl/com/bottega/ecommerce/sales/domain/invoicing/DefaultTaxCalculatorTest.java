@@ -45,5 +45,16 @@ public class DefaultTaxCalculatorTest {
         Assertions.assertEquals(expected,resoult.getAmount());
     }
 
+    @Test
+    public void TaxCalculatorWrongTypeTest() {
+        ProductData productData = new ProductData();
+        productData.setType(ProductType.WRONG);
+        Money money = new Money(100, Currency.getInstance("EUR"));
+        RequestItem item = new RequestItem(productData, 10, money);
+        DefaultTaxCalculator calculator = new DefaultTaxCalculator();
+        Assertions.assertThrows(IllegalArgumentException.class,()->calculator.calculate(item));
+
+    }
+
 
 }
