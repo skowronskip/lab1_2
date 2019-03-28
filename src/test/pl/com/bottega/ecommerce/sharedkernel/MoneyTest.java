@@ -70,4 +70,12 @@ public class MoneyTest {
 
         assertThat(money.greaterThan(money2), is(true));
     }
+
+    @Test
+    public void lessThan() {
+        Money money = new Money(1);
+        Money money2 = new Money(2);
+
+        assertThat(money.lessThan(money2), is(true));
+    }
 }
