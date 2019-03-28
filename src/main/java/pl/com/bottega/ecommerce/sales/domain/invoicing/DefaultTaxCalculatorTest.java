@@ -33,5 +33,17 @@ public class DefaultTaxCalculatorTest {
         Assertions.assertEquals(expected,resoult.getAmount());
     }
 
+    @Test
+    public void TaxCalculatorSTANDARDTest() {
+        ProductData productData = new ProductData();
+        productData.setType(ProductType.STANDARD);
+        Money money = new Money(100, Currency.getInstance("EUR"));
+        RequestItem item = new RequestItem(productData, 10, money);
+        DefaultTaxCalculator calculator = new DefaultTaxCalculator();
+        Tax resoult = calculator.calculate(item);
+        Money expected=new Money(23, Currency.getInstance("EUR"));
+        Assertions.assertEquals(expected,resoult.getAmount());
+    }
+
 
 }
