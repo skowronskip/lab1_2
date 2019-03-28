@@ -91,7 +91,6 @@ public class DefaultTaxCalculatorTest {
         ProductData productData = new ProductData();
 
         Money money = new Money(100, "EUR");
-        Money moneyForTax = new Money(5, "USD");
 
         productData.setName("tempProduct");
         productData.setPrice(money);
