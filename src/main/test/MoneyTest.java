@@ -44,4 +44,12 @@ public class MoneyTest {
         money = money.subtract(moneySecond);
         Assert.assertThat(money, is(moneyExpected));
     }
+
+    @Test
+    public void testMoneyGreaterThan() {
+        Money money = new Money(new BigDecimal(20.0));
+        Money moneySecond = new Money(new BigDecimal(10.0));
+
+        Assert.assertThat(money.greaterThan(moneySecond), is(true));
+    }
 }
