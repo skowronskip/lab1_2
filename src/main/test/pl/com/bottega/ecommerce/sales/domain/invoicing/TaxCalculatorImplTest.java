@@ -18,4 +18,18 @@ public class TaxCalculatorImplTest {
 
         assertThat(tax.getAmount(), Matchers.equalTo(taxExpected));
     }
+
+    @Test
+    public void taxCalculatorForStandardShouldReturn23PercentOfMoney(){
+        TaxCalculator calculator = new TaxCalculatorImpl();
+        Money moneyGiven = new Money(100);
+        Money taxExpected = new Money(23);
+        Tax tax = calculator.calculate(ProductType.STANDARD, moneyGiven);
+
+        assertThat(tax.getAmount(), Matchers.equalTo(taxExpected));
+
+
+    }
+
+
 }
