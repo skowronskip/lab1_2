@@ -62,4 +62,12 @@ public class MoneyTest {
         Money expected = new Money(2, Currency.getInstance("USD"));
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void greaterThan() {
+        Money money = new Money(3);
+        Money money2 = new Money(2);
+
+        assertThat(money.greaterThan(money2), is(true));
+    }
 }
