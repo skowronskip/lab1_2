@@ -50,6 +50,10 @@ public class MoneyTest {
     }
 
     @Test public void greaterThan() {
+        Money moneyLess = new Money(new BigDecimal(10.0), Currency.getInstance("EUR"));
+        Money moneyGreater = new Money(new BigDecimal(30.0), Currency.getInstance("EUR"));
+
+        Assert.assertThat(moneyGreater.greaterThan(moneyLess), Matchers.is(true));
     }
 
     @Test public void lessThan() {
