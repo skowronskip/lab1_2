@@ -1,3 +1,5 @@
+package pl.com.bottega.ecommerce.sales.domain.invoicing;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
