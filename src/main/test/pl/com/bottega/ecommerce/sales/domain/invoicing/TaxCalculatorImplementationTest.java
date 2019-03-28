@@ -29,4 +29,14 @@ public class TaxCalculatorImplementationTest {
             assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
         }
 
+        @Test
+        public void taxCalculatorForDrugShouldReturnFivePercent() {
+            TaxCalculator taxCalculator = new TaxCalculatorImplementation();
+            Money money = new Money(100);
+            Money moneyShouldBeReturned = new Money(5);
+            Tax tax = taxCalculator.calculate(ProductType.DRUG, money);
+
+            assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
+        }
+
     }
