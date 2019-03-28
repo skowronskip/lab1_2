@@ -17,4 +17,12 @@ public class MoneyTest {
 
         Assert.assertThat(result, Matchers.equalTo(expected));
     }
+
+    @Test public void checkAddMethodInMoney() {
+        Money hundred = new Money(100);
+        Money expected = new Money(300);
+        Money result = hundred.add(new Money(200));
+
+        Assert.assertThat(result, Matchers.equalTo(expected));
+    }
 }
