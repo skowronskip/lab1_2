@@ -25,4 +25,13 @@ public class MoneyTest {
         Assert.assertThat(money, is(moneyExpected));
     }
 
+    @Test
+    public void testMoneyAdd() {
+        Money money = new Money(new BigDecimal(20.0));
+        Money moneySecond = new Money(new BigDecimal(60.0));
+        Money moneyExpected = new Money(new BigDecimal(80.0));
+
+        money = money.add(moneySecond);
+        Assert.assertThat(money, is(moneyExpected));
+    }
 }
