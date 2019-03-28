@@ -36,4 +36,30 @@ public class DefaultTaxCalculatorTest {
 
     }
 
+    @Test
+    public void calculateStandardTest(){
+
+        ProductData productData = new ProductData();
+
+        Money money = new Money(100,"EUR");
+        Money moneyForTax = new Money(23,"EUR");
+
+
+        productData.setName("tempProduct");
+        productData.setPrice(money);
+        productData.setType(ProductType.STANDARD);
+        productData.setProductId(Id.generate());
+
+        RequestItem requestItem = new RequestItem(productData,1,money);
+
+        Tax tax = Tax.createTax(moneyForTax, "vat");
+
+        DefaultTaxCalculator calculator = new DefaultTaxCalculator();
+
+        Tax resultTax = calculator.calculate(requestItem);
+
+        Assertions.assertEquals(tax.getAmount(),resultTax.getAmount());
+
+    }
+
 }
