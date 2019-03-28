@@ -24,4 +24,14 @@ public class MoneyTest {
         Money expected = new Money(4, currency);
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void shouldAddSameCurrencies() {
+        Currency currency = Currency.getInstance("USD");
+        Money money = new Money(2, currency);
+
+        Money result = money.add(new Money(1, currency));
+        Money expected = new Money(3, currency);
+        assertThat(result, is(expected));
+    }
 }
