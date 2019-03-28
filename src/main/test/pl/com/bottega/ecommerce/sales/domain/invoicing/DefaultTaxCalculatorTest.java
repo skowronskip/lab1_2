@@ -41,6 +41,19 @@ class DefaultTaxCalculatorTest {
 
     }
 
+    @Test
+    void shouldCalculate5PercentageIfTypeIsDrug() {
+
+        RequestItem requestItem = new RequestItem(
+                new ProductData(Id.generate(), new Money(new BigDecimal(20)), "apap", ProductType.DRUG, Date.from(Instant.now())), 1,
+                new Money(new BigDecimal(20)));
+
+        Tax taxResult = new DefaultTaxCalculator().calculte(requestItem);
+        Tax taxExpected = new Tax(new Money(new BigDecimal(1)), "5% (D)");
+        assertThat(taxResult, is(taxExpected));
+
+    }
+
 
 
 }
