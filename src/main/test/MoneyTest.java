@@ -3,6 +3,7 @@ import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import static org.hamcrest.Matchers.is;
 
@@ -67,5 +68,12 @@ public class MoneyTest {
         Money moneySecond = new Money(new BigDecimal(20.0));
 
         Assert.assertThat(money.lessOrEquals(moneySecond), is(true));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMoneyAddMoneyWithOtherCurrency() {
+        Money money = new Money(new BigDecimal(20.0), Currency.getInstance("USD"));
+        Money moneySecond = new Money(new BigDecimal(20.0), Currency.getInstance("EUR"));
+        money = money.add(moneySecond);
     }
 }
