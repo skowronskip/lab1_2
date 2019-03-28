@@ -19,12 +19,28 @@ class DefaultTaxCalculatorTest {
     void shouldCalculate7PercentageIfTypeIsFood() {
 
         RequestItem requestItem = new RequestItem(
-                new ProductData(Id.generate(), new Money(new BigDecimal(20)), "kebab", ProductType.FOOD, Date.from(Instant.now())), 10,
+                new ProductData(Id.generate(), new Money(new BigDecimal(20)), "kebab", ProductType.FOOD, Date.from(Instant.now())), 1,
                 new Money(new BigDecimal(20)));
 
         Tax taxResult = new DefaultTaxCalculator().calculte(requestItem);
         Tax taxExpected = new Tax(new Money(new BigDecimal(1.4)), "7% (F)");
-        assertThat(taxResult,is(taxExpected));
+        assertThat(taxResult, is(taxExpected));
 
     }
+
+    @Test
+    void shouldCalculate23PercentageIfTypeIsStandard() {
+
+        RequestItem requestItem = new RequestItem(
+                new ProductData(Id.generate(), new Money(new BigDecimal(20)), "zeszyt", ProductType.STANDARD, Date.from(Instant.now())), 1,
+                new Money(new BigDecimal(20)));
+
+        Tax taxResult = new DefaultTaxCalculator().calculte(requestItem);
+        Tax taxExpected = new Tax(new Money(new BigDecimal(4.6)), "23%");
+        assertThat(taxResult, is(taxExpected));
+
+    }
+
+
+
 }
