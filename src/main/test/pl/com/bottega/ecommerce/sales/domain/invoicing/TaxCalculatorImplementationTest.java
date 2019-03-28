@@ -39,4 +39,15 @@ public class TaxCalculatorImplementationTest {
             assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
         }
 
+        @Test (expected = IllegalArgumentException.class)
+        public void taxCalculatorShouldThrowIllegalArgumentExceptionIfProductTypeIsUnknown() {
+            TaxCalculator taxCalculator = new TaxCalculatorImplementation();
+            Money money = new Money(100);
+            Money moneyShouldBeReturned = new Money(50);
+
+            Tax tax = taxCalculator.calculate(ProductType.valueOf("ALCOHOL"), money);
+
+            assertThat(tax.getAmount(), Matchers.equalTo(moneyShouldBeReturned));
+
+    }
     }
