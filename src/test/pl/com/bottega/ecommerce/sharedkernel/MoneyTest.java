@@ -21,4 +21,17 @@ public class MoneyTest {
         Assert.assertEquals(result, start.subtract(divider));
     }
 
+    @Test void addMoneyDifferentCurrency() {
+        Money start = new Money(100.00, "USD");
+        Money adder = new Money(250.50, "EUR");
+
+        assertThrows(IllegalArgumentException.class, () -> start.add(adder));
+    }
+
+    @Test void subtractMoneyDifferentCurrency() {
+        Money start = new Money(250.00, "USD");
+        Money divider = new Money(100.50, "EUR");
+
+        assertThrows(IllegalArgumentException.class, () -> start.subtract(divider));
+    }
 }
