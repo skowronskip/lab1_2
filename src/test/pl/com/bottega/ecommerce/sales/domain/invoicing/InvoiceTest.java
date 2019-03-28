@@ -34,4 +34,24 @@ public class InvoiceTest {
         assertThat(invoice.getNet(), is(net));
         assertThat(invoice.getGros(), is(invoiceLine.getGros()));
     }
+
+
+    @Test
+    public void shouldIncreaseNetAndGrosWhenAddingMultipleItems() {
+        Invoice invoice = new Invoice(new Id("Invoice0"), new ClientData(new Id("Client0"), "John Smith"));
+
+        Money net = new Money(new BigDecimal(10));
+        Tax tax = new Tax(new Money(5), "");
+        InvoiceLine invoiceLine = new InvoiceLine(null, 1, net, tax);
+
+        Money net2= new Money(new BigDecimal(20));
+        Tax tax2 = new Tax(new Money(2), "");
+        InvoiceLine invoiceLine2 = new InvoiceLine(null, 1, net2, tax2);
+
+        invoice.addItem(invoiceLine);
+        invoice.addItem(invoiceLine2);
+
+        assertThat(invoice.getNet(), is(net.add(net2)));
+        assertThat(invoice.getGros(), is(invoiceLine.getGros().add(invoiceLine2.getGros())));
+    }
 }
