@@ -23,7 +23,10 @@ public class MoneyTest {
     @Test
     public void unsuccessfulAddTest(){
 
+        Money money1 = new Money(10, Currency.getInstance("EUR"));
+        Money money2 = new Money(20, Currency.getInstance("USD"));
 
+        Assertions.assertThrows(IllegalArgumentException.class, () -> money1.add(money2));
 
     }
 
