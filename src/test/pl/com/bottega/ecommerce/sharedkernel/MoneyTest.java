@@ -28,7 +28,9 @@ public class MoneyTest {
     }
 
     @Test
-    public void subtract() {
+    public void shouldSubtract() {
+        assertEquals(new Money(40), money.subtract(new Money(10)));
+        assertEquals(new Money(25), money.subtract(new Money(25)));
     }
 
     @Test
