@@ -16,4 +16,13 @@ public class MoneyTest {
         Assert.assertThat(money, is(moneyExpected));
     }
 
+    @Test
+    public void testMoneyMultipliedByBigDecimal() {
+        Money money = new Money(new BigDecimal(20.0));
+        Money moneyExpected = new Money(new BigDecimal(80.0));
+
+        money = money.multiplyBy(new BigDecimal(4.0));
+        Assert.assertThat(money, is(moneyExpected));
+    }
+
 }
