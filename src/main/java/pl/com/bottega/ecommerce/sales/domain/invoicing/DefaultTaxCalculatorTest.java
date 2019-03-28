@@ -17,8 +17,8 @@ public class DefaultTaxCalculatorTest {
         RequestItem item = new RequestItem(productData, 10, money);
         DefaultTaxCalculator calculator = new DefaultTaxCalculator();
         Tax resoult = calculator.calculate(item);
-        Money expected=new Money(5, Currency.getInstance("EUR"));
-        Assertions.assertEquals(expected,resoult.getAmount());
+        Money expected = new Money(5, Currency.getInstance("EUR"));
+        Assertions.assertEquals(expected, resoult.getAmount());
     }
 
     @Test
@@ -29,8 +29,8 @@ public class DefaultTaxCalculatorTest {
         RequestItem item = new RequestItem(productData, 10, money);
         DefaultTaxCalculator calculator = new DefaultTaxCalculator();
         Tax resoult = calculator.calculate(item);
-        Money expected=new Money(7, Currency.getInstance("EUR"));
-        Assertions.assertEquals(expected,resoult.getAmount());
+        Money expected = new Money(7, Currency.getInstance("EUR"));
+        Assertions.assertEquals(expected, resoult.getAmount());
     }
 
     @Test
@@ -41,8 +41,8 @@ public class DefaultTaxCalculatorTest {
         RequestItem item = new RequestItem(productData, 10, money);
         DefaultTaxCalculator calculator = new DefaultTaxCalculator();
         Tax resoult = calculator.calculate(item);
-        Money expected=new Money(23, Currency.getInstance("EUR"));
-        Assertions.assertEquals(expected,resoult.getAmount());
+        Money expected = new Money(23, Currency.getInstance("EUR"));
+        Assertions.assertEquals(expected, resoult.getAmount());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DefaultTaxCalculatorTest {
         Money money = new Money(100, Currency.getInstance("EUR"));
         RequestItem item = new RequestItem(productData, 10, money);
         DefaultTaxCalculator calculator = new DefaultTaxCalculator();
-        Assertions.assertThrows(IllegalArgumentException.class,()->calculator.calculate(item));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculate(item));
 
     }
 
