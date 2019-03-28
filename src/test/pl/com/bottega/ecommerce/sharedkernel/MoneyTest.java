@@ -34,4 +34,13 @@ public class MoneyTest {
         Money expected = new Money(3, currency);
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void shouldAddWhenCurrenciesAreDifferentButOneIsZero() {
+        Money money = new Money(2, Currency.getInstance("USD"));
+
+        Money result = money.add(new Money(0, Currency.getInstance("EUR")));
+        Money expected = new Money(2, Currency.getInstance("USD"));
+        assertThat(result, is(expected));
+    }
 }
