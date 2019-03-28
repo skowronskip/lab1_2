@@ -25,4 +25,13 @@ public class MoneyTest {
 
         Assert.assertThat(result, Matchers.equalTo(expected));
     }
+
+
+    @Test public void checkSubstractMethodInMoney() {
+        Money hundred = new Money(100);
+        Money expected = new Money(70);
+        Money result = hundred.subtract(new Money(30));
+
+        Assert.assertThat(result, Matchers.equalTo(expected));
+    }
 }
