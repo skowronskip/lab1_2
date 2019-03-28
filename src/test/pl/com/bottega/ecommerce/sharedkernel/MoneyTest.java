@@ -22,7 +22,9 @@ public class MoneyTest {
     }
 
     @Test
-    public void add() {
+    public void shouldAdd() {
+        assertEquals(new Money(60), money.add(new Money(10)));
+        assertEquals(new Money(75), money.add(new Money(25)));
     }
 
     @Test
