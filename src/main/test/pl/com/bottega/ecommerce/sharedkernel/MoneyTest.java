@@ -1,0 +1,20 @@
+package pl.com.bottega.ecommerce.sharedkernel;
+
+import org.hamcrest.Matchers;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+
+import static org.junit.Assert.*;
+
+public class MoneyTest {
+
+    @Test public void checkMultiplicationMethodInMoney() {
+        Money hundred = new Money(100);
+        Money expected = new Money(2000);
+        Money result = hundred.multiplyBy(20);
+
+        Assert.assertThat(result, Matchers.equalTo(expected));
+    }
+}
