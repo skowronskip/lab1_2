@@ -11,20 +11,19 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 public class DefaultTaxCalculatorTest {
 
     @Test
-    public void calculateDrugTest(){
+    public void calculateDrugTest() {
 
         ProductData productData = new ProductData();
 
-        Money money = new Money(100,"EUR");
-        Money moneyForTax = new Money(5,"EUR");
-
+        Money money = new Money(100, "EUR");
+        Money moneyForTax = new Money(5, "EUR");
 
         productData.setName("tempProduct");
         productData.setPrice(money);
         productData.setType(ProductType.DRUG);
         productData.setProductId(Id.generate());
 
-        RequestItem requestItem = new RequestItem(productData,1,money);
+        RequestItem requestItem = new RequestItem(productData, 1, money);
 
         Tax tax = Tax.createTax(moneyForTax, "vat");
 
@@ -32,25 +31,24 @@ public class DefaultTaxCalculatorTest {
 
         Tax resultTax = calculator.calculate(requestItem);
 
-        Assertions.assertEquals(tax.getAmount(),resultTax.getAmount());
+        Assertions.assertEquals(tax.getAmount(), resultTax.getAmount());
 
     }
 
     @Test
-    public void calculateStandardTest(){
+    public void calculateStandardTest() {
 
         ProductData productData = new ProductData();
 
-        Money money = new Money(100,"EUR");
-        Money moneyForTax = new Money(23,"EUR");
-
+        Money money = new Money(100, "EUR");
+        Money moneyForTax = new Money(23, "EUR");
 
         productData.setName("tempProduct");
         productData.setPrice(money);
         productData.setType(ProductType.STANDARD);
         productData.setProductId(Id.generate());
 
-        RequestItem requestItem = new RequestItem(productData,1,money);
+        RequestItem requestItem = new RequestItem(productData, 1, money);
 
         Tax tax = Tax.createTax(moneyForTax, "vat");
 
@@ -58,7 +56,32 @@ public class DefaultTaxCalculatorTest {
 
         Tax resultTax = calculator.calculate(requestItem);
 
-        Assertions.assertEquals(tax.getAmount(),resultTax.getAmount());
+        Assertions.assertEquals(tax.getAmount(), resultTax.getAmount());
+
+    }
+
+    @Test
+    public void calculateFoodTest() {
+
+        ProductData productData = new ProductData();
+
+        Money money = new Money(100, "EUR");
+        Money moneyForTax = new Money(7, "EUR");
+
+        productData.setName("tempProduct");
+        productData.setPrice(money);
+        productData.setType(ProductType.FOOD);
+        productData.setProductId(Id.generate());
+
+        RequestItem requestItem = new RequestItem(productData, 1, money);
+
+        Tax tax = Tax.createTax(moneyForTax, "vat");
+
+        DefaultTaxCalculator calculator = new DefaultTaxCalculator();
+
+        Tax resultTax = calculator.calculate(requestItem);
+
+        Assertions.assertEquals(tax.getAmount(), resultTax.getAmount());
 
     }
 
