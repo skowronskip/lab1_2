@@ -21,6 +21,12 @@ public class MoneyTest {
     }
 
     @Test public void multiplyByBigDecimal() {
+        Money money = new Money(new BigDecimal(10.0), Currency.getInstance("EUR"));
+        Money moneyExpected = new Money(new BigDecimal(40.0), Currency.getInstance("EUR"));
+
+        money = money.multiplyBy(new BigDecimal(4.0));
+
+        Assert.assertThat(money, Matchers.equalTo(moneyExpected));
     }
 
     @Test public void add() {
