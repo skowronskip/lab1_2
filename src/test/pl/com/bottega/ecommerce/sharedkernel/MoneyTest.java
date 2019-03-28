@@ -35,6 +35,13 @@ public class MoneyTest {
         assertThat(result, is(expected));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotAddDifferentCurrencies() {
+        Money money = new Money(2, Currency.getInstance("USD"));
+
+        money.add(new Money(1, Currency.getInstance("EUR")));
+    }
+
     @Test
     public void shouldAddWhenCurrenciesAreDifferentButOneIsZero() {
         Money money = new Money(2, Currency.getInstance("USD"));
