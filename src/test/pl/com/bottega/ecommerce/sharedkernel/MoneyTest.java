@@ -43,4 +43,14 @@ public class MoneyTest {
         Money expected = new Money(2, Currency.getInstance("USD"));
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void shouldSubtractSameCurrencies() {
+        Currency currency = Currency.getInstance("USD");
+        Money money = new Money(2, currency);
+
+        Money result = money.subtract(new Money(1, currency));
+        Money expected = new Money(1, currency);
+        assertThat(result, is(expected));
+    }
 }
