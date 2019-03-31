@@ -15,25 +15,49 @@ import static org.hamcrest.Matchers.is;
 
 public class DefaultTaxCalculatorTest {
 
-//    private RequestItem item;
     private DefaultTaxCalculator defaultTaxCalculator = new DefaultTaxCalculator();
 
-//    @BeforeClass
-//    public void setUp() {
-//        Money productPrice = new Money(new BigDecimal(100), Currency.getInstance("USD"));
-//        ProductData productData = new ProductData(Id.generate(), productPrice, ProductType.DRUG, new Date());
-//        item = new RequestItem(productData,10, new Money(new BigDecimal(1000), Currency.getInstance("USD")));
-//
-//    }
-
     @Test
-    public void calculate_productTypeDRUG() {
-        Money productPrice = new Money(new BigDecimal(10), Currency.getInstance("USD"));
+    public void calculate_productTypeDRUG_shouldReturn5Percent() {
+        Money productPrice = new Money(new BigDecimal(10));
         ProductData productData = new ProductData(Id.generate(), productPrice, "test product", ProductType.DRUG, new Date());
-        RequestItem item = new RequestItem(productData,10, new Money(new BigDecimal(100), Currency.getInstance("USD")));
+        RequestItem item = new RequestItem(productData,10, new Money(new BigDecimal(100)));
 
         Tax tax = defaultTaxCalculator.calculate(item);
-        Tax expectedTax = new Tax(new Money(new BigDecimal(5), Currency.getInstance("USD")), "");
-        Assert.assertThat(tax.getAmount(), is(expectedTax.getAmount()));
+        Money expectedAmount = new Money(new BigDecimal(5));
+        Assert.assertThat(tax.getAmount(), is(expectedAmount));
     }
+
+    @Test
+    public void calculate_productTypeSTANDARD__shouldReturn23Percent() {
+        Money productPrice = new Money(new BigDecimal(10));
+        ProductData productData = new ProductData(Id.generate(), productPrice, "test product", ProductType.STANDARD, new Date());
+        RequestItem item = new RequestItem(productData,10, new Money(new BigDecimal(100)));
+
+        Tax tax = defaultTaxCalculator.calculate(item);
+        Money expectedAmount = new Money(new BigDecimal(23));
+        Assert.assertThat(tax.getAmount(), is(expectedAmount));
+    }
+
+    @Test
+    public void calculate_productTypeFOOD__shouldReturn7Percent() {
+        Money productPrice = new Money(new BigDecimal(10));
+        ProductData productData = new ProductData(Id.generate(), productPrice, "test product", ProductType.FOOD, new Date());
+        RequestItem item = new RequestItem(productData,10, new Money(new BigDecimal(100)));
+
+        Tax tax = defaultTaxCalculator.calculate(item);
+        Money expectedAmount = new Money(new BigDecimal(7));
+        Assert.assertThat(tax.getAmount(), is(expectedAmount));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void calculate_productTypeUnknown__shouldThrowException() {
+        Money productPrice = new Money(new BigDecimal(10));
+        ProductData productData = new ProductData(Id.generate(), productPrice, "test product", ProductType.valueOf("unknown"), new Date());
+        RequestItem item = new RequestItem(productData,10, new Money(new BigDecimal(100)));
+
+        defaultTaxCalculator.calculate(item);
+    }
+
+
 }
