@@ -41,7 +41,13 @@ public class MoneyTest {
         assertThat(result, Matchers.equalTo(true));
     }
 
+    @Test public void testLessThanInMoney() {
+        Money ten = new Money(10);
+        Money twenty = new Money(20);
+        boolean result = ten.lessThan(twenty);
 
+        assertThat(result, Matchers.equalTo(true));
+    }
 
 
 
