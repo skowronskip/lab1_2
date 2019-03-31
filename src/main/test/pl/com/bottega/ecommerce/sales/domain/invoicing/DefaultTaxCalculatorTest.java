@@ -46,4 +46,14 @@ public class DefaultTaxCalculatorTest {
         Tax tax = taxCalculator.calculate(requestItem);
         Assert.assertThat(tax.getAmount(), is(taxMoneyExpected));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDefaultTaxCalculatorForNotHandledProductType() {
+        TaxCalculator taxCalculator = new DefaultTaxCalculator();
+        Money money = new Money(1);
+        ProductData productData = new ProductData(new Id("id"), money, "product", ProductType.valueOf("NotHandled"), null);
+        RequestItem requestItem = new RequestItem(productData, 1, money);
+
+        Tax tax = taxCalculator.calculate(requestItem);
+    }
 }
