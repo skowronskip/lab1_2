@@ -3,6 +3,8 @@ package pl.com.bottega.ecommerce.sharedkernel;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.*;
 
 public class MoneyTest {
@@ -31,6 +33,13 @@ public class MoneyTest {
         assertThat(moneyResult, Matchers.equalTo(ten));
     }
 
+    @Test public void testGreaterThanInMoney() {
+        Money ten = new Money(10);
+        Money twenty = new Money(20);
+        boolean result = twenty.greaterThan(ten);
+
+        assertThat(result, Matchers.equalTo(true));
+    }
 
 
 
