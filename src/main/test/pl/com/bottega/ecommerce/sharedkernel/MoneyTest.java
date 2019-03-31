@@ -1,3 +1,5 @@
+package pl.com.bottega.ecommerce.sharedkernel;
+
 import org.junit.Assert;
 import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
@@ -9,7 +11,8 @@ import static org.hamcrest.Matchers.is;
 
 public class MoneyTest {
 
-    @Test public void testMoneyMultipliedByNumber() {
+    @Test
+    public void testMoneyMultipliedByNumber() {
         Money money = new Money(new BigDecimal(20.0));
         Money moneyExpected = new Money(new BigDecimal(80.0));
 

@@ -1,3 +1,5 @@
+package pl.com.bottega.ecommerce.sales.domain.payment;
+
 import org.junit.Assert;
 import org.junit.Test;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
