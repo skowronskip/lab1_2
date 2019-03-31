@@ -15,6 +15,16 @@ public class MoneyTest {
         assertThat(moneyResult, Matchers.equalTo(oneHundred));
     }
 
+    @Test public void testAddingInMoney() {
+        Money ten = new Money(10);
+        Money twenty = new Money(20);
+        Money moneyResult = ten.add(ten);
+
+        assertThat(moneyResult, Matchers.equalTo(twenty));
+    }
+
+
+
 
 
 
