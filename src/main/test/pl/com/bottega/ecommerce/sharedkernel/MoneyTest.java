@@ -23,6 +23,14 @@ public class MoneyTest {
         assertThat(moneyResult, Matchers.equalTo(twenty));
     }
 
+    @Test public void testSubtractingInMoney() {
+        Money ten = new Money(10);
+        Money twenty = new Money(20);
+        Money moneyResult = twenty.subtract(ten);
+
+        assertThat(moneyResult, Matchers.equalTo(ten));
+    }
+
 
 
 
