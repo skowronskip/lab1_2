@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class TaxCalculator implements ITaxCalculator {
-
+	
+	public TaxCalculator() {};
+	
 	@Override
 	public Tax calculateTax(RequestItem item) {
 		Money net = item.getTotalCost();
