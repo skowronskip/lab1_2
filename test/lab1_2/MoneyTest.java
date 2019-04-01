@@ -44,7 +44,12 @@ public class MoneyTest {
 	
 	@Test
 	public void greaterThanReturnsTrueIfDenominationIsGreater() {
-
+		assertThat(firstMoneyObject.greaterThan(secondMoneyObject), is(true));
+	}
+	
+	@Test
+	public void lessThanReturnsTrueIfDenominationIsSmaller() {
+		assertThat(secondMoneyObject.lessThan(firstMoneyObject), is(true));
 	}
 	
 }
