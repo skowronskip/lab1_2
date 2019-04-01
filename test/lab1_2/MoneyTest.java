@@ -1,5 +1,6 @@
 package lab1_2;
 
+import org.junit.Before;
 import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 import static org.junit.Assert.assertThat;
@@ -10,32 +11,40 @@ import java.util.Currency;
 
 public class MoneyTest {
 	
+	Money firstMoneyObject;
+	Money secondMoneyObject;
+	Money diffrentCurrencyMoneyObject;
+	
+	@Before
+	public void setupObjects() {
+		firstMoneyObject = new Money(new BigDecimal(1200));
+		secondMoneyObject = new Money(new BigDecimal(800));
+		diffrentCurrencyMoneyObject = new Money(new BigDecimal(800), Currency.getInstance("GBP"));
+	}
+	
 	@Test
 	public void addMethodShouldReturnValidResultWhenAddedMoneyWithTheSameCurrency() {
-		Money firstMoneyObject = new Money(new BigDecimal(1200));
-		Money secondMoneyObject = new Money(new BigDecimal(800));
 		assertThat(firstMoneyObject.add(secondMoneyObject).getCurrencyCode(), is("EUR"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void addMethodShouldThrowExceptionWhenAddedMoneyHasDiffrentCurrency() {
-		Money firstMoneyObject = new Money(new BigDecimal(1200));
-		Money secondMoneyObject = new Money(new BigDecimal(800), Currency.getInstance("GBP"));
-		firstMoneyObject.add(secondMoneyObject);
+		firstMoneyObject.add(diffrentCurrencyMoneyObject);
 	}
 	
 	@Test
 	public void subtractMethodShouldReturnValidResultWhenAddedMoneyWithTheSameCurrency() {
-		Money firstMoneyObject = new Money(new BigDecimal(1200));
-		Money secondMoneyObject = new Money(new BigDecimal(800));
 		assertThat(firstMoneyObject.subtract(secondMoneyObject).getCurrencyCode(), is("EUR"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void subtractMethodShouldThrowExceptionWhenAddedMoneyHasDiffrentCurrency() {
-		Money firstMoneyObject = new Money(new BigDecimal(1200));
-		Money secondMoneyObject = new Money(new BigDecimal(800), Currency.getInstance("GBP"));
-		firstMoneyObject.subtract(secondMoneyObject);
+		firstMoneyObject.subtract(diffrentCurrencyMoneyObject);
+	}
+	
+	@Test
+	public void greaterThanReturnsTrueIfDenominationIsGreater() {
+
 	}
 	
 }
