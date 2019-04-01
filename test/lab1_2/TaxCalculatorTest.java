@@ -47,4 +47,14 @@ public class TaxCalculatorTest {
 	public void taxCalculatorShouldThrowExceptionWhenNoItemIsGiven() {
 		Tax tax = taxCalculator.calculateTax(null);
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void taxCalculatorShouldThrowExceptionWhenInvalidItemIsGiven() {
+		ProductData productData = new ProductData(requestItem.getProductData().getProductId(), 
+				requestItem.getProductData().getPrice(), requestItem.getProductData().getName(), 
+				ProductType.valueOf(Integer.toString(4)), requestItem.getProductData().getSnapshotDate());
+		Money totalCost = requestItem.getTotalCost();
+		requestItem = new RequestItem(productData, 1, totalCost);
+		Tax tax = taxCalculator.calculateTax(requestItem);
+	}
 }
