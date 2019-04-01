@@ -23,4 +23,19 @@ public class MoneyTest {
 		Money secondMoneyObject = new Money(new BigDecimal(800), Currency.getInstance("GBP"));
 		firstMoneyObject.add(secondMoneyObject);
 	}
+	
+	@Test
+	public void subtractMethodShouldReturnValidResultWhenAddedMoneyWithTheSameCurrency() {
+		Money firstMoneyObject = new Money(new BigDecimal(1200));
+		Money secondMoneyObject = new Money(new BigDecimal(800));
+		assertThat(firstMoneyObject.subtract(secondMoneyObject).getCurrencyCode(), is("EUR"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void subtractMethodShouldThrowExceptionWhenAddedMoneyHasDiffrentCurrency() {
+		Money firstMoneyObject = new Money(new BigDecimal(1200));
+		Money secondMoneyObject = new Money(new BigDecimal(800), Currency.getInstance("GBP"));
+		firstMoneyObject.subtract(secondMoneyObject);
+	}
+	
 }
