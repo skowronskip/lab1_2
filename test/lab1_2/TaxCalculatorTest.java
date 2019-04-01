@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -21,9 +22,10 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class TaxCalculatorTest {
 	
+	List<RequestItem> items = new ArrayList<>();
+	
 	@Before
 	public void setupItems() {
-		List<RequestItem> items = new ArrayList<>();
 		for(int i = 1; i< 4; i++) {
 			Id id = Id.generate();
 			Money price = new Money(new BigDecimal(1200/i));
@@ -32,8 +34,12 @@ public class TaxCalculatorTest {
 			ProductData productData = new ProductData(id,price, name, ProductType.valueOf(Integer.toString(i)), date);
 			Money totalCost = new Money(new BigDecimal(1200/i).multiply(new BigDecimal(i)));
 			RequestItem requestItem = new RequestItem(productData, i, totalCost);
+			items.add(requestItem);
 		}
 	}
 	
-	
+	@After
+	public void removeItems() {
+		items.clear();
+	}
 }
