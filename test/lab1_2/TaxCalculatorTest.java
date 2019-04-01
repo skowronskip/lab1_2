@@ -22,24 +22,22 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class TaxCalculatorTest {
 	
-	List<RequestItem> items = new ArrayList<>();
+	RequestItem requestItem;
 	
 	@Before
 	public void setupItems() {
-		for(int i = 1; i< 4; i++) {
-			Id id = Id.generate();
-			Money price = new Money(new BigDecimal(1200/i));
-			Date date = new Date();
-			String name = "Product" + Integer.toString(i);
-			ProductData productData = new ProductData(id,price, name, ProductType.valueOf(Integer.toString(i)), date);
-			Money totalCost = new Money(new BigDecimal(1200/i).multiply(new BigDecimal(i)));
-			RequestItem requestItem = new RequestItem(productData, i, totalCost);
-			items.add(requestItem);
-		}
+		Id id = Id.generate();
+		Money price = new Money(new BigDecimal(1200));
+		Date date = new Date();
+		String name = "Product";
+		ProductData productData = new ProductData(id,price, name, ProductType.valueOf(Integer.toString(2)), date);
+		Money totalCost = new Money(new BigDecimal(1200).multiply(new BigDecimal(2)));
+		requestItem = new RequestItem(productData, 2, totalCost);
 	}
 	
-	@After
-	public void removeItems() {
-		items.clear();
+
+	@Test
+	public void taxCalculatorShouldReturnValidTaxWhenValidItemIsGiven() {
+		
 	}
 }
