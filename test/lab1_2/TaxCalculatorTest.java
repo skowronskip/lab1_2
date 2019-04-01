@@ -42,4 +42,9 @@ public class TaxCalculatorTest {
 		Tax tax = taxCalculator.calculateTax(requestItem);
 		assertThat(tax.getAmount(), instanceOf(Money.class));
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void taxCalculatorShouldThrowExceptionWhenNoItemIsGiven() {
+		Tax tax = taxCalculator.calculateTax(null);
+	}
 }
