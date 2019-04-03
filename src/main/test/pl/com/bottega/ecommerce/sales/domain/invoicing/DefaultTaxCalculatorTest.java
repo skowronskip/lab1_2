@@ -1,6 +1,6 @@
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductType;
@@ -13,10 +13,10 @@ import java.util.Date;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-class DefaultTaxCalculatorTest {
+public class DefaultTaxCalculatorTest {
 
     @Test
-    void shouldCalculate7PercentageIfTypeIsFood() {
+    public void shouldCalculate7PercentageIfTypeIsFood() {
 
         RequestItem requestItem = new RequestItem(
                 new ProductData(Id.generate(), new Money(new BigDecimal(20)), "kebab", ProductType.FOOD, Date.from(Instant.now())), 1,
@@ -29,7 +29,7 @@ class DefaultTaxCalculatorTest {
     }
 
     @Test
-    void shouldCalculate23PercentageIfTypeIsStandard() {
+    public void shouldCalculate23PercentageIfTypeIsStandard() {
 
         RequestItem requestItem = new RequestItem(
                 new ProductData(Id.generate(), new Money(new BigDecimal(20)), "zeszyt", ProductType.STANDARD, Date.from(Instant.now())), 1,
@@ -42,7 +42,7 @@ class DefaultTaxCalculatorTest {
     }
 
     @Test
-    void shouldCalculate5PercentageIfTypeIsDrug() {
+    public void shouldCalculate5PercentageIfTypeIsDrug() {
 
         RequestItem requestItem = new RequestItem(
                 new ProductData(Id.generate(), new Money(new BigDecimal(20)), "apap", ProductType.DRUG, Date.from(Instant.now())), 1,
@@ -53,6 +53,19 @@ class DefaultTaxCalculatorTest {
         assertThat(taxResult, is(taxExpected));
 
     }
+
+
+    @Test(expected = IllegalArgumentException.class )
+    public void  shouldThrowEcxeptionIfWrongType() throws IllegalArgumentException {
+
+        RequestItem requestItem = new RequestItem(
+                new ProductData(Id.generate(), new Money(new BigDecimal(20)), "apap", ProductType.valueOf("none"), Date.from(Instant.now())), 1,
+                new Money(new BigDecimal(20)));
+
+        new DefaultTaxCalculator().calculte(requestItem);
+
+    }
+
 
 
 
