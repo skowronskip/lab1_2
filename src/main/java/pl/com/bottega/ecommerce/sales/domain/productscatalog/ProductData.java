@@ -29,7 +29,7 @@ public class ProductData {
     private ProductType type;
 
     @SuppressWarnings("unused")
-    private ProductData() {}
+    public ProductData() {}
 
     ProductData(Id productId, Money price, String name, ProductType type, Date snapshotDate) {
         this.productId = productId;
@@ -106,4 +106,7 @@ public class ProductData {
         return type == other.type;
     }
 
+    public void setType(ProductType type) {
+        this.type = type;
+    }
 }
