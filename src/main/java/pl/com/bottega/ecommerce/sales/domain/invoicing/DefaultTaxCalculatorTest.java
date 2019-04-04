@@ -85,24 +85,4 @@ public class DefaultTaxCalculatorTest {
 
     }
 
-    @Test
-    public void unsuccessfulCalculateTest() {
-
-        ProductData productData = new ProductData();
-
-        Money money = new Money(100, "EUR");
-
-        productData.setName("tempProduct");
-        productData.setPrice(money);
-        productData.setType(ProductType.BAD);
-        productData.setProductId(Id.generate());
-
-        RequestItem requestItem = new RequestItem(productData, 1, money);
-
-        DefaultTaxCalculator calculator = new DefaultTaxCalculator();
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculate(requestItem));
-
-    }
-
 }
