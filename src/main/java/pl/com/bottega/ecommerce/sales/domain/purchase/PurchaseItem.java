@@ -24,7 +24,8 @@ public class PurchaseItem {
     private Money totalCost;
 
     @SuppressWarnings("unused")
-    private PurchaseItem() {}
+    private PurchaseItem() {
+    }
 
     public PurchaseItem(ProductData productData, int quantity, Money totalCost) {
         this.productData = productData;
