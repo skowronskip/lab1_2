@@ -26,11 +26,11 @@ public class Id implements Serializable {
         this.value = id;
     }
 
-    protected Id() {}
+    protected Id() {
+    }
 
     public static Id generate() {
-        return new Id(UUID.randomUUID()
-                          .toString());
+        return new Id(UUID.randomUUID().toString());
     }
 
     public String getId() {
