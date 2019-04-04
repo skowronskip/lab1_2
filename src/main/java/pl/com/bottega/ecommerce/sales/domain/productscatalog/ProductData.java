@@ -28,8 +28,28 @@ public class ProductData {
 
     private ProductType type;
 
+    public void setProductId(Id productId) {
+        this.productId = productId;
+    }
+
+    public void setPrice(Money price) {
+        this.price = price;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSnapshotDate(Date snapshotDate) {
+        this.snapshotDate = snapshotDate;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
+    }
+
     @SuppressWarnings("unused")
-    private ProductData() {}
+    public ProductData() {}
 
     ProductData(Id productId, Money price, String name, ProductType type, Date snapshotDate) {
         this.productId = productId;
