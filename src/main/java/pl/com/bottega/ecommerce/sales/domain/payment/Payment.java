@@ -16,6 +16,8 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
+import static pl.com.bottega.ecommerce.sales.domain.payment.PaymentFactory.getPayment;
+
 public class Payment {
 
     private ClientData clientData;
@@ -24,7 +26,7 @@ public class Payment {
 
     private Id aggregateId;
 
-    public Payment(Id aggregateId, ClientData clientData, Money amount) {
+    Payment(Id aggregateId, ClientData clientData, Money amount) {
         this.aggregateId = aggregateId;
         this.clientData = clientData;
         this.amount = amount;
@@ -32,7 +34,6 @@ public class Payment {
 
     public Payment rollBack() {
         Id id = Id.generate();
-
-        return new Payment(id, clientData, amount.multiplyBy(-1));
+        return getPayment(id, clientData, amount.multiplyBy(-1));
     }
 }
