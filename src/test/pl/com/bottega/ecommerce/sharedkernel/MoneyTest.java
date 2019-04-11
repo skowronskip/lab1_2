@@ -46,4 +46,14 @@ public class MoneyTest {
         money = money.multiplyBy(new BigDecimal(10));
         assertThat(new Money(new BigDecimal(1000)), is(money));
     }
+
+    @Test
+    public void shouldReturnProperValuesWhenGreaterThan() {
+        Money base = new Money(new BigDecimal(100));
+        Money greater = new Money(new BigDecimal(120));
+        Money less = new Money(new BigDecimal(80));
+
+        assertThat(base.greaterThan(greater), is(false));
+        assertThat(base.greaterThan(less), is(true));
+    }
 }
