@@ -39,4 +39,11 @@ public class MoneyTest {
         money = money.subtract(money2);
         assertThat(new Money(new BigDecimal(50)), is(money));
     }
+
+    @Test
+    public void shouldMultiplyMoney() {
+        Money money = new Money(new BigDecimal(100));
+        money = money.multiplyBy(new BigDecimal(10));
+        assertThat(new Money(new BigDecimal(1000)), is(money));
+    }
 }
