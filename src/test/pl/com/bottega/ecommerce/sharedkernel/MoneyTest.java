@@ -23,4 +23,12 @@ public class MoneyTest {
 
         assertThat(Currency.getInstance("EUR").getCurrencyCode(), is(money.getCurrencyCode()));
     }
+
+    @Test
+    public void shouldAddMoneyWithTheSameCurrency() {
+        Money money = new Money(new BigDecimal(100));
+        Money money2 = new Money(new BigDecimal(50));
+        money = money.add(money2);
+        assertThat(new Money(new BigDecimal(150)), is(money));
+    }
 }
