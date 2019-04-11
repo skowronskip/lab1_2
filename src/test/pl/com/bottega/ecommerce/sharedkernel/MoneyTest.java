@@ -16,4 +16,11 @@ public class MoneyTest {
 
         assertThat(Currency.getInstance("PLN").getCurrencyCode(), is(money.getCurrencyCode()));
     }
+
+    @Test
+    public void shouldCreateMoneyWithDefaultCurrency() {
+        Money money = new Money(new BigDecimal(100));
+
+        assertThat(Currency.getInstance("EUR").getCurrencyCode(), is(money.getCurrencyCode()));
+    }
 }
