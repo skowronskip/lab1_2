@@ -66,4 +66,16 @@ public class MoneyTest {
         assertThat(base.lessThan(greater), is(true));
         assertThat(base.lessThan(less), is(false));
     }
+
+    @Test
+    public void shouldReturnProperValuesWhenLessOrEquals() {
+        Money base = new Money(new BigDecimal(100));
+        Money greater = new Money(new BigDecimal(120));
+        Money less = new Money(new BigDecimal(80));
+        Money equal = new Money(new BigDecimal(100));
+
+        assertThat(base.lessOrEquals(greater), is(true));
+        assertThat(base.lessOrEquals(less), is(false));
+        assertThat(base.lessOrEquals(equal), is(true));
+    }
 }
